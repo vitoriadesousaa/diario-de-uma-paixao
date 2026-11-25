@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de uma Paixão | O Amor Imortal de Noah e Allie</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        babyBlue: {
+                            50: '#F0F4FF',
+                            100: '#D0E1FD',
+                            200: '#A0C4FF',
+                            300: '#7BB0FF',
+                            800: '#1E3A8A',
+                            900: '#2C3E50',
+                        },
+                        youthGolden: '#F7D070',
+                        youthSun: '#FFE399',
+                        elderWine: {
+                            50: '#FAEDED',
+                            100: '#F5D5DC',
+                            600: '#A3485E',
+                            800: '#8B263E',
+                            900: '#521422',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        cursive: ['Great Vibes', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animações e efeitos personalizados */
+        .font-cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Suave transição nos elementos ao rolar */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Efeito Parallax Suave */
+        .hero-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Molduras e Sombras Estilizadas */
+        .photo-frame {
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s ease;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 30px 40px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Efeito de papel vintage para citações */
+        .paper-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-babyBlue-50 font-sans text-babyBlue-900 antialiased selection:bg-babyBlue-200 selection:text-babyBlue-900">
+
+    <!-- Navegação Superior Fixa -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-babyBlue-100 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="font-cursive text-2xl sm:text-3xl font-bold text-babyBlue-900 hover:text-babyBlue-800 transition">
+                Diário de uma Paixão
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-medium tracking-wide">
+                <a href="#historia" class="hover:text-babyBlue-800 transition py-1 border-b-2 border-transparent hover:border-babyBlue-200">A História</a>
+                <a href="#sentimentos" class="hover:text-babyBlue-800 transition py-1 border-b-2 border-transparent hover:border-babyBlue-200">Sentimentos</a>
+                <a href="#juventude" class="hover:text-babyBlue-800 transition py-1 border-b-2 border-transparent hover:border-babyBlue-200">Amor Jovem</a>
+                <a href="#personagens" class="hover:text-babyBlue-800 transition py-1 border-b-2 border-transparent hover:border-babyBlue-200">Personagens</a>
+                <a href="#velhice" class="hover:text-elderWine-800 transition py-1 border-b-2 border-transparent hover:border-elderWine-600">Amor Eterno</a>
+            </div>
+            <!-- Botão Menu Mobile -->
+            <button id="menuBtn" class="md:hidden text-babyBlue-900 p-2 focus:outline-none" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Drawer Mobile -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-b border-babyBlue-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#historia" class="block text-gray-700 hover:text-babyBlue-800 font-medium">A História</a>
+            <a href="#sentimentos" class="block text-gray-700 hover:text-babyBlue-800 font-medium">Sentimentos</a>
+            <a href="#juventude" class="block text-gray-700 hover:text-babyBlue-800 font-medium">Amor Jovem</a>
+            <a href="#personagens" class="block text-gray-700 hover:text-babyBlue-800 font-medium">Personagens</a>
+            <a href="#velhice" class="block text-elderWine-800 hover:text-elderWine-900 font-medium">Amor Eterno</a>
+        </div>
+    </nav>
+
+    <!-- 1. CAPA EM DESTAQUE (HERO BANNER) -->
+    <header class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <!-- Background Imagem + Gradiante suave em tons de Azul Bebê / Mar Profundo -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://m.media-amazon.com/images/S/pv-target-images/e46417559054417d408881056c768e625399ef697188fe9a9a540e2dcb94e5ad.jpg" 
+                 alt="Casal abraçado sob a chuva" 
+                 class="w-full h-full object-cover object-center scale-105 transform filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-babyBlue-900/90 via-babyBlue-900/40 to-babyBlue-900/30"></div>
+            <div class="absolute inset-0 bg-babyBlue-200/20 mix-blend-overlay"></div>
+        </div>
+
+        <!-- Conteúdo Hero -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white mt-12">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-xs sm:text-sm font-medium uppercase tracking-widest mb-6 border border-white/30 text-babyBlue-50">
+                Uma Adaptação Magnífica de Nicholas Sparks
+            </span>
+            <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-white drop-shadow-lg">
+                Diário de uma Paixão
+            </h1>
+            <p class="font-cursive text-3xl sm:text-4xl text-babyBlue-100 mb-8 font-normal">
+                "Atrás de todo grande amor, existe uma grande história."
+            </p>
+            <div class="max-w-2xl mx-auto text-base sm:text-lg text-slate-200 font-light leading-relaxed mb-10">
+                Uma jornada poética através de verões inesquecíveis, cartas nunca entregues e um sentimento visceral capaz de superar a força do tempo e o silêncio da memória.
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#historia" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-babyBlue-200 hover:bg-white text-babyBlue-900 font-semibold transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Ler a História
+                </a>
+                <a href="#sentimentos" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium backdrop-blur-md border border-white/30 transition">
+                    Explorar Sentimentos
+                </a>
+            </div>
+        </div>
+
+        <!-- Indicador de Scroll -->
+        <a href="#historia" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-white/80 hover:text-white transition animate-bounce">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+    </header>
+
+    <!-- CITAÇÃO DE ABERTURA -->
+    <section class="py-16 bg-white border-b border-babyBlue-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <i class="fa-solid fa-quote-left text-3xl text-babyBlue-200 mb-4 block"></i>
+            <p class="font-serif text-2xl sm:text-3xl italic text-babyBlue-900 leading-relaxed">
+                "O melhor tipo de amor é aquele que acorda a alma e nos faz querer mais, que coloca fogo em nossos corações e traz paz às nossas mentes."
+            </p>
+            <span class="block mt-4 text-sm font-semibold tracking-wider text-babyBlue-800 uppercase">— Noah Calhoun</span>
+        </div>
+    </section>
+
+    <!-- 2. RESUMO DO FILME (DO INÍCIO AO FIM) -->
+    <section id="historia" class="py-20 bg-babyBlue-50 fade-in-section">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-babyBlue-900 mb-4">A Jornada Inesquecível</h2>
+                <div class="w-24 h-1 bg-babyBlue-200 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto">Do primeiro olhar no parque de diversões na Carolina do Norte ao reencontro marcante anos mais tarde.</p>
+            </div>
+
+            <!-- Linha do Tempo / Capítulos da História -->
+            <div class="space-y-12">
+                
+                <!-- Ato 1: O Verão de 1940 -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 photo-frame border border-babyBlue-100 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2 h-64 sm:h-80 rounded-xl overflow-hidden relative">
+                        <img src="https://stories.cnnbrasil.com.br/wp-content/uploads/sites/9/2024/06/image_cb8ec4.png" 
+                             alt="Parque de diversões de época" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-babyBlue-200/90 backdrop-blur-md text-babyBlue-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-babyBlue-900">1. O Primeiro Olhar e o Verão Mágico</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            A história se inicia na década de 1940 em Seabrook. Noah Calhoun, um operário simples e idealista, apaixona-se instantaneamente por Allie Hamilton, uma jovem herdeira da alta sociedade que passa as férias na cidade. Apesar das gritantes diferenças sociais, o verão os une em uma paixão intensa, repleta de passeios de bicicleta, danças noturnas no meio da rua e juras sinceras na antiga mansão Windsor Plantation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ato 2: As Cartas e a Distância -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 photo-frame border border-babyBlue-100 flex flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="w-full md:w-1/2 h-64 sm:h-80 rounded-xl overflow-hidden relative">
+                        <img src="https://portalpopline.com.br/wp-content/uploads/2023/08/diario-de-uma-paixao-2-jpg.webp" 
+                             alt="Cartas antigas e máquina de escrever" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-babyBlue-200/90 backdrop-blur-md text-babyBlue-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-babyBlue-900">2. 365 Cartas e o Peso dos Anos</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Reprovando veementemente o namoro, os pais aristocratas de Allie antecipam o fim do verão e a levam embora. Noah escreve para Allie todos os dias durante um ano inteiro — **365 cartas de amor**. No entanto, a mãe de Allie intercepta e esconde cada uma delas. Desolado pela falta de resposta e assombrado pelo estouro da Segunda Guerra Mundial, Noah alista-se nas forças armadas. Allie, por sua vez, torna-se enfermeira voluntária e conhece Lon Hammond Jr., um militar rico e carismático por quem aceita se casar.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ato 3: O Reencontro e a Escolha -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 photo-frame border border-babyBlue-100 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2 h-64 sm:h-80 rounded-xl overflow-hidden relative">
+                        <img src="https://i.ytimg.com/vi/3QKpTYKYsTE/maxresdefault.jpg" 
+                             alt="Lago sereno com cisnes e barcos" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-babyBlue-200/90 backdrop-blur-md text-babyBlue-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-babyBlue-900">3. A Casa dos Sonhos e a Chuva Torrencial</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Anos depois, prestes a subir ao altar, Allie vê no jornal a foto de Noah diante de uma mansão restaurada exatamente como ele havia prometido a ela no passado. Arrebatada por memórias, ela viaja a Seabrook. O reencontro é marcado por uma viagem inesquecível de barco cercados por cisnes e pela revelação devastadora da verdade: **"Não acabou. Ainda não acabou!"**. Sob uma chuva intensa, sete anos de mágoa e saudade reprimida explodem em uma tempestade de paixão.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ANÁLISE PROFUNDA DOS SENTIMENTOS E EMOÇÕES -->
+    <section id="sentimentos" class="py-20 bg-white border-y border-babyBlue-100 fade-in-section">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-widest text-babyBlue-800 font-bold bg-babyBlue-100 px-3 py-1 rounded-full">Análise Psicológica & Poética</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-babyBlue-900 mt-3 mb-4">A Anatomia de um Amor Visceral</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Mais do que uma história de romance, o filme expõe as facetas mais cruas, bonitas e dolorosas do afeto humano.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: A Intensidade -->
+                <div class="bg-babyBlue-50/70 p-8 rounded-2xl border border-babyBlue-100 hover:border-babyBlue-300 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-babyBlue-200 flex items-center justify-center text-babyBlue-900 text-xl font-bold mb-6">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-babyBlue-900 mb-3">A Paixão sem Filtros</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Noah e Allie não têm um relacionamento sereno no sentido convencional; eles brigam, gritam e discordam de quase tudo. Mas é precisamente essa atrito elétrico que prova a honestidade do sentimento. Nenhum dos dois consegue ser indiferente ao outro.
+                    </p>
+                </div>
+
+                <!-- Card 2: A Lealdade -->
+                <div class="bg-babyBlue-50/70 p-8 rounded-2xl border border-babyBlue-100 hover:border-babyBlue-300 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-babyBlue-200 flex items-center justify-center text-babyBlue-900 text-xl font-bold mb-6">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-babyBlue-900 mb-3">A Devoção Inabalável</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        A lealdade de Noah se expressa em atos tangíveis: restaurar a casa branca de varandas azuis com as próprias mãos. Para ele, manter a promessa feita a Allie era manter a própria alma viva, mesmo acreditando que ela jamais retornaria.
+                    </p>
+                </div>
+
+                <!-- Card 3: A Memória e o Tempo -->
+                <div class="bg-babyBlue-50/70 p-8 rounded-2xl border border-babyBlue-100 hover:border-babyBlue-300 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-babyBlue-200 flex items-center justify-center text-babyBlue-900 text-xl font-bold mb-6">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-babyBlue-900 mb-3">O Amor contra o Esquecimento</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        A grande tragédia e triunfo da narrativa está na velhice. Diante da severidade do Alzheimer, a insistência diária de Noah em ler o diário para Allie prova que o verdadeiro amor habita em uma camada muito mais profunda do que a simples memória biológica.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Citação em destaque no meio -->
+            <div class="mt-12 bg-babyBlue-100/50 rounded-2xl p-8 border border-babyBlue-200 text-center">
+                <p class="font-serif text-xl sm:text-2xl text-babyBlue-900 italic">
+                    "Eles não concordavam em quase nada. Na verdade, eles discordavam em tudo. Mas apesar de suas diferenças, eles tinham uma coisa fundamental em comum: eram loucos um pelo outro."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SEÇÃO DOS JOVENS (SOLAR, COLORIDA E PASTEL CALOROSO) -->
+    <section id="juventude" class="py-20 relative overflow-hidden bg-gradient-to-br from-amber-50 via-youthSun/30 to-amber-100/60 fade-in-section">
+        <!-- Elementos Decorativos -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-youthGolden/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-amber-300/20 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="bg-amber-200/80 text-amber-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                    O Verão do Amor Impulsivo
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-amber-950 mt-3 mb-4">A Juventude Vibrante & Apaixonada</h2>
+                <p class="text-amber-900/80 max-w-2xl mx-auto">Luz, risos sob o sol, banhos de mar e a sensação de que o mundo inteiro pertencia apenas a eles.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <!-- Moldura Estilo Polaroid -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl transform -rotate-2 hover:rotate-0 transition duration-500 border border-amber-200/50">
+                    <div class="h-80 sm:h-96 rounded-lg overflow-hidden relative">
+                        <img src="https://i0.wp.com/eoh.com.br/wp-content/uploads/tumblr_mf8zctKeuP1ri825uo1_500-e1449508670192.jpg?fit=430%2C281&ssl=1" 
+                             alt="Jovens sorrindo ao sol" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
+                            <span class="font-cursive text-2xl">"Se você é um passarinho, eu sou um passarinho."</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="font-serif italic text-amber-900 text-sm">Seabrook, Carolina do Norte — Verão de 1940</p>
+                    </div>
+                </div>
+
+                <!-- Detalhes da Juventude -->
+                <div class="space-y-6">
+                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-amber-200/60 shadow-sm">
+                        <h3 class="font-serif text-2xl font-bold text-amber-950 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-sun text-amber-500"></i> A Liberdade de Amar
+                        </h3>
+                        <p class="text-amber-900/80 text-sm leading-relaxed">
+                            Na juventude, Noah e Allie viveram um amor livre de cinismo. Noah ensinou Allie a rir sem amarras, a sentir a brisa, a deitar no meio da rua sem medo dos carros e a expressar suas vontades através da pintura.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-amber-200/60 shadow-sm">
+                        <h3 class="font-serif text-2xl font-bold text-amber-950 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-500"></i> Intensidade e Reconciliações
+                        </h3>
+                        <p class="text-amber-900/80 text-sm leading-relaxed">
+                            Cada conversa era carregada de energia. Eles não tinham medo da paixão avassaladora; viviam no limite entre a entrega absoluta e a teimosia infantil.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CARDS INTERATIVOS DOS PERSONAGENS -->
+    <section id="personagens" class="py-20 bg-white fade-in-section">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-babyBlue-900 mb-4">Os Protagonistas</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Duas almas diametralmente opostas unidas por um destino inquebrável.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Card Noah -->
+                <div class="bg-babyBlue-50 rounded-2xl overflow-hidden border border-babyBlue-100 shadow-md hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <div class="p-8">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-babyBlue-300 shadow-inner">
+                            <img src="https://i.pinimg.com/originals/f3/0e/95/f30e95505e64a96f3245133186a0a153.jpg" alt="Noah Calhoun" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-bold text-babyBlue-800 uppercase tracking-widest bg-babyBlue-200/60 px-3 py-1 rounded-full">O Homem do Campo</span>
+                        <h3 class="font-serif text-3xl font-bold text-babyBlue-900 mt-3 mb-2">Noah Calhoun</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Poético, trabalhador, persistente e profundamente leal. Noah não se importa com riqueza material; sua maior ambição sempre foi amar Allie com cada fibra do seu ser e erguer com suas próprias mãos o lar que um dia prometeram construir juntos.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-500 border-t border-babyBlue-200/60 pt-4">
+                            <li><strong class="text-babyBlue-900">Atributos marcantes:</strong> Leitura de poesia, marcenaria, cartas diárias, determinação imutável.</li>
+                            <li><strong class="text-babyBlue-900">Frase Chave:</strong> "Eu sou um homem comum, com pensamentos comuns. Mas amei alguém com todo o meu coração e alma."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Allie -->
+                <div class="bg-babyBlue-50 rounded-2xl overflow-hidden border border-babyBlue-100 shadow-md hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <div class="p-8">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-babyBlue-300 shadow-inner">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj-t2n5-rKw4Nh7SzcL6BD34knzizkfRpRXmJLoSBQXXu1fTTC0VnY-ik&s=10" alt="Allie Hamilton" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs font-bold text-babyBlue-800 uppercase tracking-widest bg-babyBlue-200/60 px-3 py-1 rounded-full">A Jovem Artista</span>
+                        <h3 class="font-serif text-3xl font-bold text-babyBlue-900 mt-3 mb-2">Allie Hamilton</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Vibrante, expressiva, apaixonada e dividida entre as obrigações familiares e a verdade do seu próprio coração. É através da arte e da convivência com Noah que ela descobre quem realmente é e qual vida deseja viver.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-500 border-t border-babyBlue-200/60 pt-4">
+                            <li><strong class="text-babyBlue-900">Atributos marcantes:</strong> Pintura em tela, riso contagioso, coragem para desafiar expectativas.</li>
+                            <li><strong class="text-babyBlue-900">Frase Chave:</strong> "Diga-me o que eu devo ser e eu serei para você."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SEÇÃO DOS IDOSOS (SEÇÃO AVERMELHADA / VINHO / TERRACOTA) -->
+    <section id="velhice" class="py-24 bg-elderWine-50 text-elderWine-900 relative overflow-hidden fade-in-section border-t border-elderWine-100">
+        <!-- Brilho de Fundo -->
+        <div class="absolute inset-0 bg-gradient-to-b from-elderWine-50 via-elderWine-100/40 to-elderWine-50 pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="bg-elderWine-800 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+                    A Casa de Repouso Creekside
+                </span>
+                <h2 class="font-serif text-4xl sm:text-6xl font-bold text-elderWine-900 mt-4 mb-4">
+                    O Amor Além das Sombras do Tempo
+                </h2>
+                <div class="w-20 h-1 bg-elderWine-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-elderWine-800/80 max-w-2xl mx-auto text-base">
+                    Quando as memórias desvanecem, apenas a essência do amor permanece viva no diário escrito à mão.
+                </p>
+            </div>
+
+            <!-- Destaque para a Foto dos Velhinhos & Leitura do Diário -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-16">
+                <!-- Moldura Foto dos Idosos -->
+                <div class="md:col-span-5">
+                    <div class="bg-white p-4 rounded-2xl shadow-2xl border-2 border-elderWine-600/30 relative">
+                        <div class="h-80 sm:h-96 rounded-xl overflow-hidden relative">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTscwtDPEoft6nlL0S95IrQ6KX22uZyTrKHkHz2-kbtjFekAKYbUJC-4aw0&s=10" 
+                                 alt="Casal idoso carinhoso rindo juntos" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-elderWine-900/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="font-serif text-lg font-semibold">Duke (Noah) & Allie</p>
+                                <p class="text-xs text-elderWine-100">Juntos até o último suspiro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- O Diário e a Devoção -->
+                <div class="md:col-span-7 space-y-6">
+                    <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl border border-elderWine-100 shadow-md">
+                        <h3 class="font-serif text-3xl font-bold text-elderWine-900 mb-4">
+                            "Leia isto para mim e eu voltarei para você"
+                        </h3>
+                        <p class="text-slate-700 leading-relaxed text-sm sm:text-base mb-4">
+                            Anos após o casamento e uma vida repleta de filhos e alegrias, Allie é diagnosticada com a doença de Alzheimer. Esquecendo-se da própria história e de sua família, ela é levada para uma clínica de repouso.
+                        </p>
+                        <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                            Recusando-se a deixá-la sozinha, Noah instala-se no mesmo local sob o nome de "Duke". Com infinita paciência e amor incondicional, ele senta-se ao lado dela todos os dias para ler as páginas amareladas do caderno onde Allie havia registrado a jornada dos dois.
+                        </p>
+                    </div>
+
+                    <div class="bg-elderWine-800 text-white p-6 rounded-2xl shadow-lg border border-elderWine-900">
+                        <p class="font-serif italic text-lg sm:text-xl text-elderWine-100 mb-3">
+                            "Você acha que o nosso amor é capaz de fazer milagres?"
+                        </p>
+                        <p class="text-xs text-elderWine-100 uppercase tracking-wider font-semibold">
+                            — "Eu acho que o nosso amor pode fazer tudo o que nós quisermos."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- O Desfecho Emocionante -->
+            <div class="bg-white/90 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-elderWine-200 text-center max-w-3xl mx-auto shadow-xl">
+                <i class="fa-solid fa-hands-holding-heart text-4xl text-elderWine-600 mb-4"></i>
+                <h3 class="font-serif text-3xl font-bold text-elderWine-900 mb-3">O Final Imortal</h3>
+                <p class="text-slate-700 text-base leading-relaxed mb-6">
+                    Na última noite, em um instante mágico de clareza, Allie reconhece seu grande amor. Deitados na mesma cama, de mãos dadas, eles adormecem pacificamente juntos. Um amor que desafiou a ciência, o tempo e a morte.
+                </p>
+                <div class="inline-block px-6 py-2 rounded-full bg-elderWine-100 text-elderWine-900 font-serif font-bold text-lg">
+                    Amor sem Fim
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA DE MÍDIA & MOMENTOS -->
+    <section class="py-20 bg-babyBlue-50 fade-in-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-4xl font-bold text-babyBlue-900 mb-2">Cenas Emblemáticas</h2>
+                <p class="text-slate-600 text-sm">Momentos guardados no coração do cinema mundial</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Foto 1 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-md h-64">
+                    <img src="https://www.cinemaescrito.com/wp-content/uploads/2018/09/di%C3%A1rio-de-uma-paix%C3%A3o.jpg" alt="Beijo na Chuva" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <span class="text-white font-serif text-lg">O Reencontro sob a Tempestade</span>
+                    </div>
+                </div>
+                <!-- Foto 2 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-md h-64">
+                    <img src="https://media.gazetadopovo.com.br/2024/11/20235117/notebook-mubi.jpg.webp" alt="Dança na rua" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <span class="text-white font-serif text-lg">A Dança na Estrada Vazia</span>
+                    </div>
+                </div>
+                <!-- Foto 3 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-md h-64">
+                    <img src="https://s2-quem.glbimg.com/CDdxMZ5j7B3mm4rc0sqwTxnhNOY=/0x0:2048x1368/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_b0f0e84207c948ab8b8777be5a6a4395/internal_photos/bs/2024/z/3/J2gIT3RYKQO6S9Hm3ExA/diario-de-uma-paixao-5.jpg" alt="Barco com cisnes" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <span class="text-white font-serif text-lg">O Passeio no Lago dos Cisnes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-babyBlue-900 text-white py-12 border-t border-babyBlue-800">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-6">
+            <h3 class="font-cursive text-4xl text-babyBlue-200">Diário de uma Paixão</h3>
+            <p class="text-babyBlue-100/70 text-sm max-w-lg mx-auto">
+                "Eu sou quem sou por sua causa. Você é toda razão, toda esperança e todo sonho que eu já tive."
+            </p>
+            <div class="flex justify-center space-x-6 text-babyBlue-200 pt-4">
+                <a href="#" class="hover:text-white transition" aria-label="Topo"><i class="fa-solid fa-arrow-up"></i> Topo</a>
+            </div>
+            <div class="text-xs text-babyBlue-100/50 pt-6 border-t border-babyBlue-800">
+                &copy; Homenagem Cinematográfica ao filme "The Notebook" (2004). Desenvolvido com carinho.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PARA INTERATIVIDADE E ANIMAÇÕES AO ROLAR DA PÁGINA -->
+    <script>
+        // Menu Mobile Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar em links mobile
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer para animações de entrada (Fade-in)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
